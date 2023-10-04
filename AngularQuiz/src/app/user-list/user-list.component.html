@@ -1,6 +1,6 @@
 
 <div>
-  <app-search></app-search>
+  <app-search (searchTextChanged)="onsearchTextChanged($event)"></app-search>
   <app-filter [all]='getTotalUsers()'
               [Even]='getEvenId()'
               [Odd]='getOddId()'
@@ -8,23 +8,26 @@
 </div>
 
 <ng-container *ngFor="let u of displayedUsers">
-  <div class="container" *ngIf="listCountRadioButton === 'All' || listCountRadioButton === u.type">
 
-    <div class="row">
-      <div class="col">
-        <div class="card">
-          <div class="card-body">
-            <h5 class="card-title">{{u.first_name}} {{u.last_name}}</h5>
-            <p class="card-text">{{u.email}}</p>
-            <img src="{{u.avatar}}" alt="{{u.first_name}} Avatar" class="img-fluid rounded" />
+  
+    <div class="container" *ngIf="searchText === '' || u.email.toLowerCase().includes(searchText) && listCountRadioButton === 'All' || listCountRadioButton === u.type ">
+
+      <div class="row">
+        <div class="col">
+          <div class="card">
+            <div class="card-body">
+              <h5 class="card-title">{{u.first_name}} {{u.last_name}}</h5>
+              <p class="card-text">{{u.email}}</p>
+              <img src="{{u.avatar}}" alt="{{u.first_name}} Avatar" class="img-fluid rounded" />
+            </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
-  <br />
+    <br />
 
-</ng-container>
+  </ng-container>
+
 <div class="text-center">
   <button class="btn btn-primary" [disabled]="List.page === 1" (click)="changePage(List.page - 1)">Previous</button>
   <button class="btn btn-primary" [disabled]="endIndex === List.total - 1" (click)="changePage(List.page + 1)">Next</button>

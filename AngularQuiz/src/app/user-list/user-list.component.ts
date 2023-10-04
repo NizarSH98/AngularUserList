@@ -55,9 +55,15 @@ export class UserListComponent {
   }
 
   listCountRadioButton: string = 'All';
+  searchText: string = '';
 
   onFilterRadioButtonChanged(data: string) {
     this.listCountRadioButton = data;
     console.log(this.listCountRadioButton);
+  }
+
+  onsearchTextChanged(data: string) {
+    this.searchText = data;
+    console.log(this.searchText);
   }
 }
