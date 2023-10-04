@@ -1,0 +1,19 @@
+<div class=" filter-container">
+  <span>Filter: </span>
+
+  <input type="radio" name="filter" value="All"
+         [(ngModel)]="selectedRadioButton"
+         (change)="onRadioButtonSelectionChanged()"/>
+  <span>{{'All('+all+')'}}</span>
+
+  <input type="radio" name="filter" value="Even"
+         [(ngModel)]="selectedRadioButton"
+         (change)="onRadioButtonSelectionChanged()"/>
+  <span>{{'ID Even('+Even+')'}}</span>
+
+  <input type="radio" name="filter" value="Odd"
+         [(ngModel)]="selectedRadioButton"
+         (change)="onRadioButtonSelectionChanged()"/>
+  <span>{{'ID Odd('+Odd+')'}}</span>
+
+</div>

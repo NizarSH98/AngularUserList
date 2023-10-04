@@ -1,0 +1,41 @@
+
+<div>
+  <app-search></app-search>
+  <app-filter [all]='getTotalUsers()'
+              [Even]='getEvenId()'
+              [Odd]='getOddId()'
+              (filterRadioButtonSelectionChanged)="onFilterRadioButtonChanged($event)"></app-filter>
+</div>
+
+<ng-container *ngFor="let u of displayedUsers">
+  <div class="container" *ngIf="listCountRadioButton === 'All' || listCountRadioButton === u.type">
+
+    <div class="row">
+      <div class="col">
+        <div class="card">
+          <div class="card-body">
+            <h5 class="card-title">{{u.first_name}} {{u.last_name}}</h5>
+            <p class="card-text">{{u.email}}</p>
+            <img src="{{u.avatar}}" alt="{{u.first_name}} Avatar" class="img-fluid rounded" />
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <br />
+
+</ng-container>
+<div class="text-center">
+  <button class="btn btn-primary" [disabled]="List.page === 1" (click)="changePage(List.page - 1)">Previous</button>
+  <button class="btn btn-primary" [disabled]="endIndex === List.total - 1" (click)="changePage(List.page + 1)">Next</button>
+  <div *ngFor="let page of getPages()" class="d-inline-block mx-1">
+    <button class="btn btn-secondary" [disabled]="List.page === page" (click)="changePage(page)">{{ page }}</button>
+  </div>
+</div>
+<div class="End">
+  <h4>Support:</h4>
+  <a href="{{List.support.url}}">{{List.support.url}}</a>
+  <br />
+  <h4>{{List.support.text}}</h4>
+</div>
+
